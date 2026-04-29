@@ -1,0 +1,38 @@
+Disp "How many Rows?"
+Prompt R
+Disp "How many Cols?"
+Prompt C
+
+{2*R,2*C}→dim([J])
+0→I
+
+While not(I=(R))
+0→J
+While not(J=(C))
+Prompt V
+
+real(V)→A
+imag(V)→B
+
+A→[J](2*I+1,2*J+1)
+­1*B→[J](2*I+1,2*J+2)
+A→[J](2*I+2,2*J+2)
+B→[J](2*I+2,2*J+1)
+
+
+J+1→J
+
+End
+Disp "ended previous row"
+I+1→I
+End
+
+rref([J])→[J]
+Matr>list([J],(2*C-1),L₁)
+
+1→I
+0→dim(L₂)
+While not(I≥2*R)
+(L₁(I)+L₁(I+1)*i)→L₂(dim(L₂)+1)
+2+I→I
+End
